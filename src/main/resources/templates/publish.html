@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>发布 - 码匠社区</title>
+    <title>发布 - 心灵之窗</title>
     <head th:insert="~{import :: head}"></head>
     <head th:insert="~{import :: markdown}"></head>
 </head>
@@ -13,7 +13,6 @@
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
             <h2><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 发起</h2>
             <hr>
-
             <form action="/publish" method="post">
                 <input type="hidden" name="id" th:value="${id}">
                 <div class="form-group">
@@ -54,19 +53,19 @@
                         <ul class="nav nav-tabs" role="tablist">
                             <li role="presentation" th:each="selectCategory,selectCategoryStat: ${tags}"
                                 th:class="${selectCategoryStat.first ? 'active':''}">
-                                <a th:href="${'#'+selectCategory.categoryName}" aria-controls="home" role="tab"
-                                   data-toggle="tab" th:text="${selectCategory.categoryName}"></a>
+                                <a th:href="${'#'+selectCategory.getTag()}" aria-controls="home" role="tab"
+                                   data-toggle="tab" th:text="${selectCategory.getTag()}"></a>
                             </li>
                         </ul>
                         <div class="tab-content">
-                            <div role="tabpanel" th:id="${selectCategory.categoryName}"
+                            <div role="tabpanel" th:id="${selectCategory.getTag()}"
                                  th:each="selectCategory: ${tags}"
                                  th:class="${selectCategoryStat.first ? 'active tab-pane':'tab-pane'}">
                                 <span>
                                     <span th:each="selectTag: ${selectCategory.tags}">
                                     <span class="community-tag" onclick="selectTag(this)"
-                                          th:data-tag="${selectTag}"
-                                          th:text="${' '+selectTag}">
+                                          th:data-tag="${selectTag.getTag()}"
+                                          th:text="${' '+selectTag.getTag()}">
                                     </span>
                                 </span>
                                 </span>

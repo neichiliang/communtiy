@@ -27,7 +27,7 @@
                      th:each="ad : ${#httpServletRequest.getServletContext().getAttribute('HEADER')}">
                     <a th:href="${ad.url}" th:text="${ad.title}" target="_blank"
                        style="color: #A00;font-weight: bold;"></a>
-                    <img src="/images/hot.png"/>
+                    <img src="/images/logo.png"/>
                 </div>
 
                 <!--内容-->
@@ -49,16 +49,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="width: 100%;"
                      th:if="${#lists.isEmpty(#httpServletRequest.getServletContext().getAttribute('FOOTER'))}">
                     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-                    <!-- 页尾广告 -->
-                    <ins class="adsbygoogle"
-                         style="display:block"
-                         data-ad-client="ca-pub-9804684553882114"
-                         data-ad-slot="4772323686"
-                         data-ad-format="auto"
-                         data-full-width-responsive="true"></ins>
-                    <script>
-                        (adsbygoogle = window.adsbygoogle || []).push({});
-                    </script>
+
                 </div>
 
                 <!--标签-->
@@ -101,11 +92,20 @@
                             </h5>
                             <div th:text="${comment.content}"></div>
                             <div class="menu">
-                                <span class="glyphicon glyphicon-thumbs-up icon"></span>
+
+                                <span th:data-lightenid="${comment.id}"
+                                      onclick="lightenup(this)">
+                                    <span class="glyphicon glyphicon-thumbs-up icon"></span>
+                                    <span th:id="like+${comment.id}" th:text="${comment.likeCount}"></span>
+
+                                </span>
+
+
                                 <span th:data-id="${comment.id}"
                                       onclick="collapseComments(this)" class="comment-icon">
                                     <span class="glyphicon glyphicon-comment"></span>
                                     <span th:text="${comment.commentCount}"></span>
+
                                 </span>
                                 <span class="pull-right"
                                       th:text="${#dates.format(comment.gmtCreate,'yyyy-MM-dd')}"></span>
@@ -173,7 +173,7 @@
                 </div>
             </div>
             <div th:insert="~{notice :: notice}"></div>
-            <div th:insert="~{side :: side}"></div>
+<!--            <div th:insert="~{side :: side}"></div>-->
             <!--相关问题-->
             <hr class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

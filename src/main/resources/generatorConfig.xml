@@ -6,29 +6,30 @@
 <generatorConfiguration>
 
     <context id="DB2Tables" targetRuntime="MyBatis3">
-        
+
         <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"></plugin>
-        <jdbcConnection driverClass="org.h2.Driver"
-                        connectionURL="jdbc:h2:~/community"
-                        userId="sa"
-                        password="123">
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/community?serverTimezone=UTC&amp;useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=true"
+                        userId="root"
+                        password="123456789">
+            <property name="nullCatalogMeansCurrent" value="true"/>
         </jdbcConnection>
 
         <javaTypeResolver>
             <property name="forceBigDecimals" value="false"/>
         </javaTypeResolver>
 
-        <javaModelGenerator targetPackage="life.majiang.community.model" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="life.myheart.community.model" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
+        <sqlMapGenerator targetPackage="mapper" targetProject="src\main\resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
-        <javaClientGenerator type="XMLMAPPER" targetPackage="life.majiang.community.mapper"
-                             targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="life.myheart.community.mapper"
+                             targetProject="src\main\java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
@@ -38,5 +39,7 @@
         <table tableName="notification" domainObjectName="Notification"></table>
         <table tableName="nav" domainObjectName="Nav"></table>
         <table tableName="ad" domainObjectName="Ad"></table>
+        <table tableName="tags" domainObjectName="Tags"></table>
+        <table tableName="word" domainObjectName="Word"></table>
     </context>
 </generatorConfiguration>

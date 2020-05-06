@@ -33,7 +33,7 @@ function comment2target(targetId, type, content) {
                 if (response.code == 2003) {
                     var isAccepted = confirm(response.message);
                     if (isAccepted) {
-                        window.open("https://github.com/login/oauth/authorize?client_id=2859958f9f059979ed3a&redirect_uri=" + document.location.origin + "/callback&scope=user&state=1");
+                        window.location.href="http://localhost/test/page/login-1.html"
                         window.localStorage.setItem("closable", true);
                     }
                 } else {
@@ -51,10 +51,52 @@ function comment(e) {
     comment2target(commentId, 2, content);
 }
 
+function lightenup(e){
+    var count = 0;
+    var id = e.getAttribute("data-lightenid");
+    var collapse = e.getAttribute("data-collapse");
+    if (collapse) {
+        count = -1;
+        e.classList.remove("active");
+        e.removeAttribute("data-collapse");
+
+        $.ajax({
+            type: "post",
+            url: "/updatalike",
+            data: {
+                "id":id,
+                "count":count
+            },
+            dataType: "json",
+            success: function(result){
+                $("#like"+id).text(result)
+            }
+        });
+    }
+    else {
+        e.setAttribute("data-collapse", "in");
+        e.classList.add("active");
+        count = 1;
+        $.ajax({
+            type: "post",
+            url: "/updatalike",
+            data: {
+                "id":id,
+                "count":count
+            },
+            dataType: "json",
+            success: function(result){
+                $("#like"+id).text(result)
+            }
+        });
+    }
+}
+
 /**
  * 展开二级评论
  */
 function collapseComments(e) {
+
     var id = e.getAttribute("data-id");
     var comments = $("#comment-" + id);
 
@@ -65,7 +107,8 @@ function collapseComments(e) {
         comments.removeClass("in");
         e.removeAttribute("data-collapse");
         e.classList.remove("active");
-    } else {
+    }
+    else {
         var subCommentContainer = $("#comment-" + id);
         if (subCommentContainer.children().length != 1) {
             //展开二级评论
