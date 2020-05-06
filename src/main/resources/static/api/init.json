@@ -1,0 +1,72 @@
+{
+  "clearInfo": {
+    "clearUrl": "api/clear.json"
+  },
+  "homeInfo": {
+    "title": "首页",
+    "icon": "fa fa-home",
+    "href": "page/sensitivequestion.html?mpi=m-p-i-0"
+  },
+  "logoInfo": {
+    "title": "心灵之窗",
+    "image": "/images/logo.png",
+    "href": ""
+  },
+  "menuInfo": {
+    "sensitive": {
+      "title": "用户敏感词管理",
+      "icon": "fa fa-slideshare",
+      "child": [
+        {
+          "title": "问题敏感词",
+          "href": "page/sensitivequestion.html",
+          "icon": "fa fa-meetup",
+          "target": ""
+        },
+        {
+          "title": "回复敏感词",
+          "href": "page/sensitivecomment.html",
+          "icon": "fa fa-meetup",
+          "target": ""
+        }
+      ]
+    },
+    "currency": {
+      "title": "常规管理",
+      "icon": "fa fa-address-book",
+      "child": [
+        {
+          "title": "用户管理",
+          "href": "page/user.html",
+          "icon": "fa fa-home",
+          "target": "_self"
+        },
+        {
+          "title": "问题列表",
+          "href": "page/question.html",
+          "icon": "fa fa-window-maximize",
+          "target": "_self"
+        }
+      ]
+    },
+    "word": {
+      "title": "词库管理",
+      "icon": "fa fa-lemon-o",
+      "child": [
+        {
+          "title": "分类标签",
+          "href": "page/classification.html",
+          "icon": "fa fa-dot-circle-o",
+          "target": "_self"
+        },
+        {
+          "title": "敏感词库",
+          "href": "page/sensitive.html",
+          "icon": "fa fa-adn",
+          "target": "_self"
+        }
+      ]
+    }
+
+  }
+}

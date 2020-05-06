@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>发布 - 心灵之窗</title>
+    <head th:insert="~{import :: head}"></head>
+</head>
+<body>
+
+<div th:insert="~{navigation :: nav}"></div>
+<div class="container-fluid main">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+            <h2><span class="glyphicon glyphicon-user" aria-hidden="true"></span> 个人信息</h2>
+            <hr>
+            <form style="margin: 20px"action="/saveimg" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="id" th:value="${id}">
+                <div class="form-group">
+                    <label>头 像:</label><br />
+                    <img th:src="${user.getAvatarUrl()}" style="height: 80px;width: 70px;margin: 10px"><br />
+                    更换头像:<input type="file" name="file" accept="image/*" /> <br>
+                <input type="submit" value="立刻上传">
+                </div>
+            </form>
+
+
+            <form style="margin: 20px"action="/save" method="post">
+                <input type="hidden" name="id" th:value="${id}">
+                <div class="form-group">
+                    <label for="name">姓 名:</label>
+                    <input type="text" class="form-control" name="name" id="name" th:value="${user.getName()}"/>
+                </div>
+                <div class="form-group">
+                    <label for="password">密 码:</label>
+                    <input type="password" class="form-control" name="password"  id="password" th:value="${user.getPassword()}"/>
+                </div>
+                <div class="form-group">
+                    <label for="sex1">性 别:</label><br />
+                    <label>
+                        <input type="radio" name="sex" id="sex1" value="男" th:checked="${user.getSex()!=null}?${user.getSex()=='男'}"> 男
+                        <input type="radio" name="sex" id="sex2" value="女" th:checked="${user.getSex()!=null}?${user.getSex()=='女'}">女
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label for="phone">电话号码:</label>
+                    <input type="text" class="form-control" name="phone" id="phone" th:value="${user.getPhone()}"/>
+                </div>
+                <button type="submit" class="btn btn-default">保 存</button>
+            </form>
+        </div>
+    </div>
+</div>
+<div th:insert="~{footer :: foot}"></div>
+</body>
+</html>

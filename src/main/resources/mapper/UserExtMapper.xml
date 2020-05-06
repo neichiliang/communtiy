@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="life.myheart.community.mapper.UserExtMapper">
+  <resultMap id="BaseResultMap" type="life.myheart.community.model.User">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="account_id" jdbcType="VARCHAR" property="accountId" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="type" jdbcType="VARCHAR" property="type" />
+    <result column="sex" jdbcType="VARCHAR" property="sex" />
+    <result column="phone" jdbcType="CHAR" property="phone" />
+    <result column="token" jdbcType="VARCHAR" property="token" />
+    <result column="gmt_create" jdbcType="BIGINT" property="gmtCreate" />
+    <result column="gmt_modified" jdbcType="BIGINT" property="gmtModified" />
+    <result column="bio" jdbcType="VARCHAR" property="bio" />
+    <result column="avatar_url" jdbcType="VARCHAR" property="avatarUrl" />
+  </resultMap>
+
+  <select id="selectSearch" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select * from user
+    <where>
+      <if test="id != null and id != ''">
+        and id like '%${id}%'
+      </if>
+      <if test="name != null and name != ''">
+        and name like '%${name}%'
+      </if>
+      <if test="phone != null and phone != ''">
+        and phone like '%${phone}%'
+      </if>
+    </where>
+    limit #{offset},#{limit}
+  </select>
+
+  <select id="selectUserRelated" parameterType="java.lang.String" resultType="java.lang.Long">
+    select count(*) from user
+    <where>
+      <if test="id != null and id != ''">
+        and id like '%${id}%'
+      </if>
+      <if test="name != null and name != ''">
+        and name like '%${name}%'
+      </if>
+      <if test="phone != null and phone != ''">
+        and phone like '%${phone}%'
+      </if>
+    </where>
+  </select>
+
+</mapper>
