@@ -12,12 +12,14 @@
         <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
             <h2><span class="glyphicon glyphicon-user" aria-hidden="true"></span> 个人信息</h2>
             <hr>
-            <form style="margin: 20px"action="/saveimg" method="post" enctype="multipart/form-data">
+            <form style="margin: 20px"action="/saveimg" method="post" enctype="multipart/form-data" onsubmit="CheckForm(this)">
                 <input type="hidden" name="id" th:value="${id}">
+                <input type="hidden" id="exception" th:value="${exception}">
+                <input type="hidden" id="url" th:value="${user.getAvatarUrl()}">
                 <div class="form-group">
                     <label>头 像:</label><br />
                     <img th:src="${user.getAvatarUrl()}" style="height: 80px;width: 70px;margin: 10px"><br />
-                    更换头像:<input type="file" name="file" accept="image/*" /> <br>
+                    更换头像:<input type="file" name="file" accept="image/gif,image/jpeg,image/jpg,image/png,image/svg" /> <br>
                 <input type="submit" value="立刻上传">
                 </div>
             </form>
@@ -50,5 +52,33 @@
     </div>
 </div>
 <div th:insert="~{footer :: foot}"></div>
+<script>
+function CheckForm(form) {
+    /* console.log("asfafd");
+      var exception= $("#exception").val();
+     console.log("asd"+exception);
+     var ext = form.substr(index+1);
+     console.log("aqwe"+ext);
+     if(exception.isEmpty()){
+         alert(exception);
+         return false;
+     }
+     else {
+     if (isAssetTypeAnImage(ext) == true)
+         return true;
+     else {
+         alert('请提交图片');
+         return false;
+     }
+         alert('请提交图片');
+         return false;
+     }
+     alert('请提交图片');
+     return false;*/
+
+
+}
+</script>
+
 </body>
 </html>

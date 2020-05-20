@@ -15,7 +15,7 @@ public class UploadConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
 //映射图片保存地址
-//        registry.addResourceHandler("/images/**").addResourceLocations("file:C:\\Users\\c_heweibin-001\\IdeaProjects\\communtiy\\src\\main\\resources\\static\\images\\");
-        registry.addResourceHandler("/images/**").addResourceLocations("file:/ncl/springboot/communtiy/src/main/resources/static/images/");
+        registry.addResourceHandler("/images/**").addResourceLocations("file:C:\\Users\\c_heweibin-001\\IdeaProjects\\communtiy\\src\\main\\resources\\static\\images\\");
+//        registry.addResourceHandler("/images/**").addResourceLocations("file:/ncl/springboot/communtiy/src/main/resources/static/images/");
     }
 }

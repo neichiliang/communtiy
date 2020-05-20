@@ -38,16 +38,21 @@ public class AdminUserController {
                           Model m,
                           @Param("id")long id){
         try {
+            if (!file.isEmpty()){
             String fileName = file.getOriginalFilename();
-//            String filePath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\images\\";
-            String filePath = System.getProperty("user.dir")+"/src/main/resources/static/images/";
+            String filePath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\images\\";
+//            String filePath = System.getProperty("user.dir")+"/src/main/resources/static/images/";
             System.out.println(filePath + fileName);
             File destFile = new File(filePath + fileName);
             destFile.getParentFile().mkdirs();
             file.transferTo(destFile);
             String fileName1 = "/images/"+fileName;
             boolean a = userService.updatauser(id,fileName1);
-            m.addAttribute("fileName", fileName1);
+            m.addAttribute("fileName", fileName1);}
+            else {
+                m.addAttribute("exception", "请上传文件");
+                return "redirect:/userin/" + id;
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             return "上传失败," + e.getMessage();
