@@ -39,7 +39,8 @@ public class AdminUserController {
                           @Param("id")long id){
         try {
             String fileName = file.getOriginalFilename();
-            String filePath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\images\\";
+//            String filePath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\images\\";
+            String filePath = System.getProperty("user.dir")+"/src/main/resources/static/images/";
             System.out.println(filePath + fileName);
             File destFile = new File(filePath + fileName);
             destFile.getParentFile().mkdirs();

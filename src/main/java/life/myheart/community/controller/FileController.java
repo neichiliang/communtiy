@@ -23,7 +23,8 @@ public class FileController {
     public FileDTO upload(HttpServletRequest request) {
         MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
         MultipartFile file = multipartRequest.getFile("editormd-image-file");
-        String filePath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\images\\";
+//        String filePath = System.getProperty("user.dir")+"\\src\\main\\resources\\static\\images\\";
+        String filePath = System.getProperty("user.dir")+"/src/main/resources/static/images/";
         String fileName = file.getOriginalFilename();  // 文件名
         File dest = new File(filePath + fileName);
         if (!dest.getParentFile().exists()) {

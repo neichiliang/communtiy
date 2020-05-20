@@ -3,8 +3,11 @@ package life.myheart.community.service;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import life.myheart.community.dto.AdminUserDTO;
+import life.myheart.community.mapper.QuestionMapper;
 import life.myheart.community.mapper.UserExtMapper;
 import life.myheart.community.mapper.UserMapper;
+import life.myheart.community.model.Question;
+import life.myheart.community.model.QuestionExample;
 import life.myheart.community.model.User;
 import life.myheart.community.model.UserExample;
 import life.myheart.community.utils.PageUtil;
@@ -24,6 +27,9 @@ public class UserService {
 
     @Autowired
     private UserExtMapper userExtMapper;
+
+    @Autowired
+    private QuestionMapper questionMapper;
 
 
     public PageUtil getuser(Integer limit, Integer page) {
@@ -53,6 +59,9 @@ public class UserService {
     public boolean deleteuser(long id) {
 
         int s = userMapper.deleteByPrimaryKey(id);
+        QuestionExample questionExample = new QuestionExample();
+        questionExample.createCriteria().andCreatorEqualTo(id);
+        int s1 = questionMapper.deleteByExample(questionExample);
         if (s == 1)
             return true;
         else
@@ -95,7 +104,9 @@ public class UserService {
     }
 
     public boolean adduser(String password, String name, String phone, String type, String sex) {
+        String img = "/images/default-avatar.png";
         User user = new User();
+        user.setAvatarUrl(img);
         user.setName(name);
         user.setPassword(password);
         user.setPhone(phone);
